@@ -1,6 +1,6 @@
 subdir('alpha')
 subdir('apetag')
-#subdir('audiofx')
+subdir('audiofx')
 #subdir('audioparsers')
 #subdir('auparse')
 #subdir('autodetect')

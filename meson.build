@@ -144,7 +144,8 @@ gst_dep = dependency('gstreamer-1.0')
 gstvideo_dep = dependency('gstreamer-video-1.0')
 gstpbutils_dep = dependency('gstreamer-pbutils-1.0')
 gsttag_dep = dependency('gstreamer-tag-1.0')
-
+gstfft_dep = dependency('gstreamer-fft-1.0')
+gstaudio_dep = dependency('gstreamer-audio-1.0')
 
 # Check all of the things.
 deps = [
