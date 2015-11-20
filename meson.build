@@ -1,7 +1,8 @@
 project('gst-plugins-good', 'c', 'cpp', version : '1.4.5',
   default_options : ['warning_level=1', 'c_std=gnu99'])
 
-varr = meson.project_version().split('.')
+version_str = meson.project_version()
+varr = version_str.split('.')
 version_major = varr[0]
 version_minor = varr[1]
 version_micro = varr[2]
@@ -131,9 +132,17 @@ cdata.set('SIZEOF_VOIDP', cc.sizeof('void*'))
 # Here be fixmes.
 cdata.set('HAVE_CPU_X86_64', 1)
 cdata.set('HAVE_GCC_ASM', 1)
+cdata.set('VERSION', '"@0@"'.format(version_str))
+cdata.set('GST_LICENSE', '"FIXME"')
+cdata.set('PACKAGE', '"FIXME"')
+cdata.set('GST_PACKAGE_NAME', '"FIXME"')
+cdata.set('GST_PACKAGE_ORIGIN', '"FIXME"')
+
+# Mandatory GST deps
+gst_dep = dependency('gstreamer-1.0')
+gst_video_dep = dependency('gstreamer-video-1.0')
 
 # Check all of the things.
-
 deps = [
   ['gtk_dep','gtk+-3.0', '', ''],
   ['gtkx_dep','gtk+-x11-3.0', '', ''],
@@ -176,6 +185,11 @@ foreach d : deps
   endif
 endforeach
 
-configure_file(input : 'config.h.in',
+configure_file(input : 'config.h.meson',
   output : 'config.h',
   configuration : cdata)
+
+core_args = ['-DHAVE_CONFIG_H']
+core_incs = include_directories('.')
+
+subdir('gst')
