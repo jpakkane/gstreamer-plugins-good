@@ -135,12 +135,16 @@ cdata.set('HAVE_GCC_ASM', 1)
 cdata.set('VERSION', '"@0@"'.format(version_str))
 cdata.set('GST_LICENSE', '"FIXME"')
 cdata.set('PACKAGE', '"FIXME"')
+cdata.set('GETTEXT_PACKAGE', '"FIXME"')
 cdata.set('GST_PACKAGE_NAME', '"FIXME"')
 cdata.set('GST_PACKAGE_ORIGIN', '"FIXME"')
 
 # Mandatory GST deps
 gst_dep = dependency('gstreamer-1.0')
-gst_video_dep = dependency('gstreamer-video-1.0')
+gstvideo_dep = dependency('gstreamer-video-1.0')
+gstpbutils_dep = dependency('gstreamer-pbutils-1.0')
+gsttag_dep = dependency('gstreamer-tag-1.0')
+
 
 # Check all of the things.
 deps = [
@@ -190,6 +194,6 @@ configure_file(input : 'config.h.meson',
   configuration : cdata)
 
 core_args = ['-DHAVE_CONFIG_H']
-core_incs = include_directories('.')
+core_incs = include_directories('.', 'gst-libs')
 
 subdir('gst')
