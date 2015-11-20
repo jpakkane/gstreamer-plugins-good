@@ -149,6 +149,8 @@ gstaudio_dep = dependency('gstreamer-audio-1.0')
 gstbase_dep = dependency('gstreamer-base-1.0')
 gstriff_dep = dependency('gstreamer-riff-1.0')
 
+libm = find_library('m', required : false)
+
 # Check all of the things.
 deps = [
   ['gtk_dep','gtk+-3.0', '', ''],
