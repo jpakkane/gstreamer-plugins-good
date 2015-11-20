@@ -1,0 +1,21 @@
+gstnavigationtest = library('gstnavigationtest',
+  'gstnavigationtest.c',
+  c_args : core_args,
+  include_directories : core_incs,
+  dependencies : [gstbase_dep, gstvideo_dep])
+
+gstdebug = library('gstdebug',
+  'gstdebug.c',
+  'breakmydata.c',
+  'gstcapssetter.c',
+  'gstnavseek.c',
+  'gstpushfilesrc.c',
+  'gsttaginject.c',
+  'rndbuffersize.c',
+  'progressreport.c',
+  'tests.c',
+  'cpureport.c',
+  'testplugin.c',
+  c_args: core_args,
+  include_directories : core_incs,
+  dependencies : [gstbase_dep, gstvideo_dep])

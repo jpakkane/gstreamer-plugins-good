@@ -28,8 +28,8 @@ pano_h = configure_file(input : 'audiopanoramaorc-dist.h',
 )
 
 gstaudiofx = library('gstaudiofx',
-  audiofx_sources, #pano_c,
+  audiofx_sources, pano_c,
   c_args : core_args,
   include_directories : core_incs,
-  dependencies : [gstaudio_dep, gstfft_dep]
+  dependencies : [orc_dep, gstaudio_dep, gstfft_dep]
 )
