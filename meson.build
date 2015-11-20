@@ -39,7 +39,6 @@ check_functions = [
 # check token HAVE_AALIB
   ['HAVE_ASINH', 'asinh', '#include<math.h>'],
 # check token HAVE_BZ2
-# check token HAVE_CAIRO
 # check token HAVE_CFLOCALECOPYCURRENT
 # check token HAVE_CFPREFERENCESCOPYAPPVALUE
   ['HAVE_CLOCK_GETTIME', 'clock_gettime', '#include<time.h>'],
@@ -127,7 +126,55 @@ cdata.set('SIZEOF_CHAR', cc.sizeof('char'))
 cdata.set('SIZEOF_INT', cc.sizeof('int'))
 cdata.set('SIZEOF_LONG', cc.sizeof('long'))
 cdata.set('SIZEOF_SHORT', cc.sizeof('short'))
-cdata.set('SIZEOF_VOIDP', cc.sizeof('voidp'))
+cdata.set('SIZEOF_VOIDP', cc.sizeof('void*'))
+
+# Here be fixmes.
+cdata.set('HAVE_CPU_X86_64', 1)
+cdata.set('HAVE_GCC_ASM', 1)
+
+# Check all of the things.
+
+deps = [
+  ['gtk_dep','gtk+-3.0', '', ''],
+  ['gtkx_dep','gtk+-x11-3.0', '', ''],
+  ['gudev_dep','gudev-1.0', '>=147', ''],
+  ['libv4l2_dep','libv4l2', '', ''],
+  ['xfixes_dep','xfixes', '', ''],
+  ['xdamage_dep','xdamage', '', ''],
+  ['cairo_dep','cairo', '>=1.10.0', ''],
+  ['flac_dep','flac', '>=1.1.4', 'HAVE_FLAC'],
+  ['gdkpixbuf_dep','gdk-pixbuf-2.0', '>=2.8.0', ''],
+  ['jack_dep','jack', '>=1.9.7', 'HAVE_JACK_1_9_7'],
+  ['caca_dep','caca', '', ''],
+  ['libdv_dep','libdv', '>=0.100', ''],
+  ['libpng_dep','libpng', '>=1.2', ''],
+  ['libpulse_dep','libpulse', '>=2.0', 'HAVE_PULSE'],
+  ['libraw1394_dep','libraw1394', '>=2.0.0', ''],
+  ['libiec61883_dep','libiec61883', '>=1.0.0', ''],
+  ['libraw1394_dep','libraw1394', '>=1.1.0', ''],
+  ['shout_dep','shout', '>=2.0', ''],
+  ['libsoup_dep','libsoup-2.4', '>=2.40', ''],
+  ['speex_dep','speex', '>=1.1.6', ''],
+  ['taglib_dep','taglib', '>=1.5', ''],
+  ['vpx_dep','vpx', '>=1.3.0', 'HAVE_VPX'],
+  ['wavpack_dep','wavpack', '>= 4.20', 'HAVE_WAVPACK'],
+]
+
+foreach d : deps
+  varname = d[0]
+  depname = d[1]
+  version = d[2]
+  confhname = d[3]
+  if version == ''
+    curdep = dependency(depname, required : false)
+  else
+    curdep = dependency(depname, required : false, version : version)
+  endif
+  set_variable(varname, curdep)
+  if curdep.found() and confhname != ''
+    cdata.set(confhname, 1)
+  endif
+endforeach
 
 configure_file(input : 'config.h.in',
   output : 'config.h',
