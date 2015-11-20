@@ -148,6 +148,8 @@ gstfft_dep = dependency('gstreamer-fft-1.0')
 gstaudio_dep = dependency('gstreamer-audio-1.0')
 gstbase_dep = dependency('gstreamer-base-1.0')
 gstriff_dep = dependency('gstreamer-riff-1.0')
+gstrtp_dep = dependency('gstreamer-rtp-1.0')
+
 orc_dep = dependency('orc-0.4')
 
 libm = find_library('m', required : false)
