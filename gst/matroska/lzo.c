@@ -25,7 +25,11 @@
 #include <gst/gst.h>
 #include <stdlib.h>
 #include <string.h>
+#ifdef HAVE_STDINT_H
+#include <stdint.h>
+#else
 #include "_stdint.h"
+#endif
 #include "lzo.h"
 
 /*! define if we may write up to 12 bytes beyond the output buffer */

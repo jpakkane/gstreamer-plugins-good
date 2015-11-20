@@ -133,6 +133,7 @@ cdata.set('SIZEOF_VOIDP', cc.sizeof('void*'))
 cdata.set('HAVE_CPU_X86_64', 1)
 cdata.set('HAVE_GCC_ASM', 1)
 cdata.set('VERSION', '"@0@"'.format(version_str))
+cdata.set('PACKAGE_VERSION', '"@0@"'.format(version_str))
 cdata.set('GST_LICENSE', '"FIXME"')
 cdata.set('PACKAGE', '"FIXME"')
 cdata.set('GETTEXT_PACKAGE', '"FIXME"')
@@ -152,8 +153,13 @@ gstrtp_dep = dependency('gstreamer-rtp-1.0')
 
 orc_dep = dependency('orc-0.4')
 zlib_dep = dependency('zlib')
+bz2lib = find_library('bz2', required : false)
 
 libm = find_library('m', required : false)
+
+if bz2lib.found()
+  cdata.set('HAVE_BZ2', 1)
+endif
 
 # Check all of the things.
 deps = [
