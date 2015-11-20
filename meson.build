@@ -151,6 +151,7 @@ gstriff_dep = dependency('gstreamer-riff-1.0')
 gstrtp_dep = dependency('gstreamer-rtp-1.0')
 
 orc_dep = dependency('orc-0.4')
+zlib_dep = dependency('zlib')
 
 libm = find_library('m', required : false)
 
