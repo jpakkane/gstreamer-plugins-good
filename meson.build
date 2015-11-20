@@ -147,6 +147,7 @@ gsttag_dep = dependency('gstreamer-tag-1.0')
 gstfft_dep = dependency('gstreamer-fft-1.0')
 gstaudio_dep = dependency('gstreamer-audio-1.0')
 gstbase_dep = dependency('gstreamer-base-1.0')
+gstriff_dep = dependency('gstreamer-riff-1.0')
 
 # Check all of the things.
 deps = [
