@@ -16,5 +16,5 @@ gstmatroska = library('gstmatroska',
   matroska_sources,
   c_args : core_args,
   include_directories : core_incs,
-  dependencies : [gstbase_dep, zlib_dep, bz2lib],
+  dependencies : [gstbase_dep, zlib_dep, bz2lib, libm],
 )
