@@ -83,7 +83,6 @@ check_functions = [
 # check token HAVE_JACK_1_9_7
 # check token HAVE_LIBCACA
 # check token HAVE_LIBDV
-# check token HAVE_LIBPNG
 # check token HAVE_LIBV4L2
   ['HAVE_MMAP', 'mmap', '#include<sys/mman.h>'],
 # check token HAVE_ORC
@@ -152,6 +151,7 @@ gstrtp_dep = dependency('gstreamer-rtp-1.0')
 gstnet_dep = dependency('gstreamer-net-1.0')
 gstsdp_dep = dependency('gstreamer-sdp-1.0')
 gstrtsp_dep = dependency('gstreamer-rtsp-1.0')
+gstcontroller_dep = dependency('gstreamer-controller-1.0')
 
 orc_dep = dependency('orc-0.4')
 zlib_dep = dependency('zlib')
@@ -214,6 +214,13 @@ foreach d : deps
     cdata.set(confhname, 1)
   endif
 endforeach
+
+if vpx_dep.found()
+  cdata.set('HAVE_VP8_ENCODER', 1)
+  cdata.set('HAVE_VP8_DECODER', 1)
+  cdata.set('HAVE_VP9_ENCODER', 1)
+  cdata.set('HAVE_VP9_DECODER', 1)
+endif
 
 configure_file(input : 'config.h.meson',
   output : 'config.h',

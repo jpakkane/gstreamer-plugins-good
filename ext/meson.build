@@ -10,10 +10,10 @@ if flac_dep.found()
   subdir('flac')
 endif
 
-#  if USE_GDK_PIXBUF
-#  GDK_PIXBUF_DIR = gdk_pixbuf
-#  endif
-#  
+if gdkpixbuf_dep.found()
+   subdir('gdk_pixbuf')
+endif
+
 #  if USE_JACK
 #  JACK_DIR=jack
 #  endif
@@ -59,11 +59,11 @@ endif
 #  if USE_TAGLIB
 #  TAGLIB_DIR = taglib
 #  endif
-#  
-#  if USE_VPX
-#  VPX_DIR=vpx
-#  endif
-#  
+
+if vpx_dep.found()
+  subdir('vpx')
+endif
+
 #  if USE_WAVPACK
 #  WAVPACK_DIR=wavpack
 #  endif
