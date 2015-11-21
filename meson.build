@@ -159,6 +159,10 @@ zlib_dep = dependency('zlib')
 bz2lib = find_library('bz2', required : false)
 gio_dep = dependency('gio-2.0')
 
+x_dep = dependency('x11', required : false)
+xfixes_dep = dependency('xfixes', required : false)
+xdamage_dep = dependency('xdamage', required : false)
+
 libm = find_library('m', required : false)
 
 if bz2lib.found()
@@ -216,3 +220,4 @@ core_args = ['-DHAVE_CONFIG_H']
 core_incs = include_directories('.', 'gst-libs')
 
 subdir('gst')
+subdir('sys')
