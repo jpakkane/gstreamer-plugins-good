@@ -151,6 +151,7 @@ gstrtp_dep = dependency('gstreamer-rtp-1.0')
 gstnet_dep = dependency('gstreamer-net-1.0')
 gstsdp_dep = dependency('gstreamer-sdp-1.0')
 gstrtsp_dep = dependency('gstreamer-rtsp-1.0')
+gstcheck_dep = dependency('gstreamer-check-1.0')
 gstcontroller_dep = dependency('gstreamer-controller-1.0')
 
 orc_dep = dependency('orc-0.4')
@@ -222,6 +223,10 @@ if vpx_dep.found()
   cdata.set('HAVE_VP9_DECODER', 1)
 endif
 
+if cc.has_header('valgrind.h')
+  cdata.set('HAVE_VALGRIND', 1)
+endif
+
 configure_file(input : 'config.h.meson',
   output : 'config.h',
   configuration : cdata)
@@ -232,3 +237,5 @@ core_incs = include_directories('.', 'gst-libs')
 subdir('gst')
 subdir('sys')
 subdir('ext')
+subdir('tests')
+
