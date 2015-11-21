@@ -6,10 +6,10 @@ if cairo_dep.found()
   subdir('cairo')
 endif
 
-#  if USE_FLAC
-#  FLAC_DIR = flac
-#  endif
-#  
+if flac_dep.found()
+  subdir('flac')
+endif
+
 #  if USE_GDK_PIXBUF
 #  GDK_PIXBUF_DIR = gdk_pixbuf
 #  endif
@@ -46,11 +46,11 @@ endif
 #  if USE_SHOUT2
 #  SHOUT2_DIR = shout2
 #  endif
-#  
-#  if USE_SOUP
-#  SOUP_DIR=soup
-#  endif
-#  
+
+if libsoup_dep.found()
+  subdir('soup')
+endif
+
 #  if USE_SPEEX
 #  SPEEX_DIR = speex
 #  endif
