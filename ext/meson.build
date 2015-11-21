@@ -52,10 +52,10 @@ if libsoup_dep.found()
   subdir('soup')
 endif
 
-#  if USE_SPEEX
-#  SPEEX_DIR = speex
-#  endif
-#  
+if speex_dep.found()
+  subdir('speex')
+endif
+
 #  if USE_TAGLIB
 #  TAGLIB_DIR = taglib
 #  endif
