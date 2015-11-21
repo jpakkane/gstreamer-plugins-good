@@ -221,3 +221,4 @@ core_incs = include_directories('.', 'gst-libs')
 
 subdir('gst')
 subdir('sys')
+subdir('ext')
