@@ -18,9 +18,10 @@ endif
 #  JACK_DIR=jack
 #  endif
 #  
-#  if USE_JPEG
-#  JPEG_DIR = jpeg
-#  endif
+if jpeglib.found()
+  subdir('jpeg')
+endif
+
 #  
 #  if USE_LIBCACA
 #  LIBCACA_DIR = libcaca
@@ -29,19 +30,19 @@ endif
 #  if USE_LIBDV
 #  LIBDV_DIR = dv
 #  endif
-#  
-#  if USE_LIBPNG
-#  LIBPNG_DIR = libpng
-#  endif
-#  
+
+if libpng_dep.found()
+  subdir('libpng')
+endif
+
 #  if USE_DV1394
 #  DV1394_DIR = raw1394
 #  endif
-#  
-#  if USE_PULSE
-#  PULSE_DIR = pulse
-#  endif
-#  
+
+if libpulse_dep.found()
+  subdir('pulse')
+endif
+
 #  
 #  if USE_SHOUT2
 #  SHOUT2_DIR = shout2

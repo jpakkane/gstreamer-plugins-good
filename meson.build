@@ -81,7 +81,6 @@ check_functions = [
 # check token HAVE_JACK
 # check token HAVE_JACK_0_120_1
 # check token HAVE_JACK_1_9_7
-# check token HAVE_JPEG
 # check token HAVE_LIBCACA
 # check token HAVE_LIBDV
 # check token HAVE_LIBPNG
@@ -156,7 +155,6 @@ gstrtsp_dep = dependency('gstreamer-rtsp-1.0')
 
 orc_dep = dependency('orc-0.4')
 zlib_dep = dependency('zlib')
-bz2lib = find_library('bz2', required : false)
 gio_dep = dependency('gio-2.0')
 
 x_dep = dependency('x11', required : false)
@@ -164,9 +162,14 @@ xfixes_dep = dependency('xfixes', required : false)
 xdamage_dep = dependency('xdamage', required : false)
 
 libm = find_library('m', required : false)
+bz2lib = find_library('bz2', required : false)
+jpeglib = find_library('jpeg', required : false)
 
 if bz2lib.found()
   cdata.set('HAVE_BZ2', 1)
+endif
+if jpeglib.found()
+  cdata.set('HAVE_JPEG', 1)
 endif
 
 # Check all of the things.
